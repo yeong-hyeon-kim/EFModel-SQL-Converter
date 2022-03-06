@@ -1,9 +1,10 @@
 {
-	"name": "efcore-model-converter",
+	"name": "EF-Model-SQL-Converter",
 	"displayName": "EF Model SQL Converter",
 	"description": "Convert EF Core to SQL Script Or SQL Script to EF Model.",
 	"icon": "resources/EFCoreSQL.png",
 	"version": "1.0.0",
+	"publisher": "codechemi",
 	"engines": {
 		"vscode": "^1.64.0"
 	},
@@ -49,5 +50,9 @@
 		"webpack": "^5.66.0",
 		"webpack-cli": "^4.9.1",
 		"@vscode/test-electron": "^2.0.3"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/yeong-hyeon-kim/EFModel-SQL-Converter.git"
 	}
 }
