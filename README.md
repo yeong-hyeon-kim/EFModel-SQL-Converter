@@ -6,7 +6,7 @@ EF Model SQL Converter.
 
 Convert EF Model to SQL Script Or SQL Script to EF Model.
 
-![feature\](https://github.com/yeong-hyeon-kim/EFModel-SQL-Converter/blob/master/img/EFModel-SQL.png)
+![play img](https://github.com/yeong-hyeon-kim/EFModel-SQL-Converter/blob/master/img/EFModel-SQL.png)
 
 ## Extension Execution
 
