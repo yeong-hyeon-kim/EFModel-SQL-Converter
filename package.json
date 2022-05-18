@@ -1,9 +1,9 @@
 {
-	"name": "EF-Model-SQL-Converter",
+	"name": "EFModelSQLConverter",
 	"displayName": "EF Model SQL Converter",
 	"description": "Convert EF Core to SQL Script Or SQL Script to EF Model.",
 	"icon": "resources/EFCoreSQL.png",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"publisher": "codechemi",
 	"engines": {
 		"vscode": "^1.64.0"
