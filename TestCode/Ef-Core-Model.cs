@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ALIMS.Models.NEW_MODEL.LIS_IF
+namespace MODEL
 {
     public class BOARD
     {
@@ -20,7 +20,7 @@ namespace ALIMS.Models.NEW_MODEL.LIS_IF
         [Required]
         public string CONTENT { get; set; }
 
-        public string COMENT { get; set; }
+        public string COMMENT { get; set; }
 
         [Required]
         public DateTime WRITE_DT { get; set; }

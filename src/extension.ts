@@ -83,10 +83,9 @@ function convetSqlScript(scriptText: string[]) {
               scriptArray.push(
                 "  " + replaceEfType(element) + " PRIMARY KEY NOT NULL,\n"
               );
-              
+
               // Init Temp BuiltinAttribute
               tempBuiltinAttribute = "";
-
             } else if (tempBuiltinAttribute.indexOf("Required") > -1) {
               // If BuiltinAttribute == [Required]
               element = removeEfBuiltinAttribute(element);
@@ -121,7 +120,9 @@ function convetSqlScript(scriptText: string[]) {
     }
   });
   // Remove Last Comma.
-  scriptArray[scriptArray.length - 1] = scriptArray[scriptArray.length - 1].replace(",","");
+  scriptArray[scriptArray.length - 1] = scriptArray[
+    scriptArray.length - 1
+  ].replace(",", "");
   scriptArray.push(")");
   saveScript(scriptArray, ".sql");
 }
@@ -149,13 +150,13 @@ function convertEfCoreModel(lineArray: string[]) {
       element = element.replace("[", "");
       element = element.replace("]", "");
       element = element.replace(",", "");
-      
+
       if (element.indexOf(".") > -1) {
         element = element.split(".")[1];
         scriptArray.push(" public class " + element + "\n {\n");
       }
     } else {
-      if (element.indexOf(",") > -1 && (element.toUpperCase().indexOf("NULL") > -1 || element.toUpperCase().indexOf("NOT NULL") > -1 )) {
+      if (element.indexOf(",") > -1 &&(element.toUpperCase().indexOf("NULL") > -1 || element.toUpperCase().indexOf("NOT NULL") > -1)){
         element = removeSqlString(element);
 
         if (element.toUpperCase().indexOf("NOT NULL") > -1) {
@@ -171,12 +172,12 @@ function convertEfCoreModel(lineArray: string[]) {
           if (element.toUpperCase().indexOf("PRIMARY KEY") > -1) {
             element = element.replace("PRIMARY KEY", "");
             scriptArray.push(intentString + "[Key]");
-          }else{
+          } else {
             scriptArray.push(intentString + "[Required]");
           }
-           
+
           // Make Property
-          scriptArray.push(intentString + "public " + element + " { get; set; }\n");
+          scriptArray.push("public " + element + "{ get; set; }\n");
         } else {
           element = replaceSqlType(element);
 
@@ -186,7 +187,9 @@ function convertEfCoreModel(lineArray: string[]) {
           element = element.replace("]", "");
 
           // Make Property
-          scriptArray.push(intentString + "public " + element + " { get; set; }\n");
+          scriptArray.push(
+            intentString + "public " + element + "{ get; set; }\n"
+          );
         }
       }
     }
@@ -199,7 +202,7 @@ function convertEfCoreModel(lineArray: string[]) {
 
 function removeSqlString(scriptText: string): string {
   let returnText: string = scriptText.trim();
-  
+
   returnText = returnText.replace(",", "");
   returnText = returnText.replace("\r", "");
   returnText = returnText.replace("[", "");
