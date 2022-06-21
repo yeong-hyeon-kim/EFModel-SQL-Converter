@@ -2,4 +2,4 @@
 
 ## [Released]
 
-- Initial release
+- Initial release.
