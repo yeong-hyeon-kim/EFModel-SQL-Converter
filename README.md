@@ -2,11 +2,9 @@
 
 ### EF Model SQL Converter
 
-* Convert EF Model to SQL Script Or SQL Script to EF Model.
-
 ## 🏷️ Function
 
-Convert EF Model to SQL Script Or SQL Script to EF Model.
+* Convert EF Model to SQL Script Or SQL Script to EF Model.
 
 ## 💡 How to use Extension?
 
