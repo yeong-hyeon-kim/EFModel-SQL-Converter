@@ -15,7 +15,7 @@
 
 ## Release Notes
 
-### 1.0.2
+### 1.0.3
 
 Initial release of EF Model SQL Converter.
 
