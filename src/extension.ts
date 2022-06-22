@@ -6,20 +6,17 @@ import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
   let createScript = vscode.commands.registerCommand(
+    // Execute `CreateScript`
     "efcore-model-converter.createScript",
     () => {
-      generateFiles();
+      CreateScript();
     }
   );
 
   context.subscriptions.push(createScript);
 }
 
-function generateFiles() {
-  getFileText();
-}
-
-function getFileText() {
+function CreateScript() {
   let scriptFilePath: string | undefined =
     vscode.window.activeTextEditor?.document.fileName;
 
@@ -156,7 +153,11 @@ function convertEfCoreModel(lineArray: string[]) {
         scriptArray.push(" public class " + element + "\n {\n");
       }
     } else {
-      if (element.indexOf(",") > -1 &&(element.toUpperCase().indexOf("NULL") > -1 || element.toUpperCase().indexOf("NOT NULL") > -1)){
+      if (
+        element.indexOf(",") > -1 &&
+        (element.toUpperCase().indexOf("NULL") > -1 ||
+          element.toUpperCase().indexOf("NOT NULL") > -1)
+      ) {
         element = removeSqlString(element);
 
         if (element.toUpperCase().indexOf("NOT NULL") > -1) {
@@ -200,6 +201,16 @@ function convertEfCoreModel(lineArray: string[]) {
   saveScript(scriptArray, ".cs");
 }
 
+// Get CSharpe(EF Model) BuiltinAttribute. ex: [Key], [Required]
+function getBuiltinAttribute(scriptText: string): string {
+  let returnText: string = scriptText;
+  returnText = returnText.substring(
+    returnText.indexOf("["),
+    returnText.indexOf("]") + 1
+  );
+  return returnText;
+}
+
 function removeSqlString(scriptText: string): string {
   let returnText: string = scriptText.trim();
 
@@ -224,7 +235,7 @@ function removeEfString(scriptText: string): string {
   return returnText;
 }
 
-// Remove C Sharpe BuiltinAttribute. ex: [Key], [Required]
+// Remove C Sharpe(EF Model) BuiltinAttribute. ex: [Key], [Required]
 function removeEfBuiltinAttribute(scriptText: string): string {
   let returnText: string = scriptText;
   let removeText: string = scriptText;
@@ -239,16 +250,7 @@ function removeEfBuiltinAttribute(scriptText: string): string {
   return returnText;
 }
 
-// Get C Sharpe BuiltinAttribute. ex: [Key], [Required]
-function getBuiltinAttribute(scriptText: string): string {
-  let returnText: string = scriptText;
-  returnText = returnText.substring(
-    returnText.indexOf("["),
-    returnText.indexOf("]") + 1
-  );
-  return returnText;
-}
-
+// Remove CSharpe Class Keyword
 function removeEfKeyword(scriptText: string): string {
   let returnText: string = scriptText;
   returnText = returnText.replace("class", "");
@@ -256,7 +258,7 @@ function removeEfKeyword(scriptText: string): string {
   return returnText;
 }
 
-// Remove C Sharpe Access Modifier
+// Remove CSharpe Access Modifier
 function removeEfAccessModifier(scriptText: string): string {
   let returnText: string = scriptText;
 
@@ -270,7 +272,7 @@ function removeEfAccessModifier(scriptText: string): string {
   return returnText;
 }
 
-// Replace Type sql to 'c sharpe'
+// Replace Type Sql to 'CSharpe'
 function replaceSqlType(scriptText: string): string {
   let returnText: string = scriptText;
   let returnType: string = "";
@@ -286,6 +288,7 @@ function replaceSqlType(scriptText: string): string {
     );
   }
 
+  // Replace Type Sql to 'CSharpe'
   if (returnText.indexOf("nvarchar") > -1) {
     returnField = returnText.replace("nvarchar", "");
     returnType = "string ";
@@ -316,7 +319,7 @@ function replaceSqlType(scriptText: string): string {
   return returnText;
 }
 
-// Replace Type csharpe to 'sql'
+// Replace Type CSharpe to 'Sql'
 function replaceEfType(scriptText: string): string {
   let returnText: string = scriptText;
   let returnType: string = "";
@@ -352,7 +355,7 @@ function replaceEfType(scriptText: string): string {
   return returnText;
 }
 
-// Save 'Sql' Or 'C Sharpe' Script
+// Save 'Sql' Or 'CSharpe' Script
 function saveScript(scriptArray: string[], fileExtension: string) {
   let scriptFilePath: string | undefined =
     vscode.window.activeTextEditor?.document.fileName;
