@@ -6,14 +6,14 @@ export function activate(context: vscode.ExtensionContext) {
     // Execute `CreateScript`
     "efcore-model-converter.createScript",
     () => {
-      CreateScript();
+      convertScript();
     }
   );
 
   context.subscriptions.push(createScript);
 }
 
-function CreateScript() {
+function convertScript() {
   let scriptFilePath: string | undefined =
     vscode.window.activeTextEditor?.document.fileName;
 
