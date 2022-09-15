@@ -1,6 +1,3 @@
-import { create } from "domain";
-import { exit } from "process";
-import { stringify } from "querystring";
 import { TextEncoder } from "util";
 import * as vscode from "vscode";
 
@@ -127,7 +124,6 @@ function convetSqlScript(scriptText: string[]) {
 // SqlScript to Convert Ef Model Class
 function convertEfCoreModel(lineArray: string[]) {
   let intentString: string = "    ";
-  let scriptText: string = "";
   let scriptArray: string[] = [];
   let tokenArray: string[] = lineArray;
 
